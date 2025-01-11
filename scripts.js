@@ -1,3 +1,6 @@
+let humanScore = 0
+let computerScore = 0    
+    
 function getComputerChoice(){
     let choiceNo = Math.floor(Math.random() * 3)
     if(choiceNo == 0) return "rock"
@@ -14,6 +17,25 @@ function getHumanChoice(){
         }
         alert("Please enter a valid choice") 
     }
+}
+
+
+function playGame(){
+    
+    let roundNo = 1
+    
+    while(roundNo <= 5){
+        const humanSelection = getHumanChoice()
+        const computerSelection = getComputerChoice()
+        playRound(computerSelection, humanSelection)
+        roundNo++
+    }
+    let winner = (humanScore > computerScore)? "You" : (humanScore == computerScore)? "No one" : "Computer"
+    console.log("Game over!")
+    console.log(`Your score : ${humanScore}`)
+    console.log(`Computer score : ${computerScore}`)
+    console.log(`Winner : ${winner}`)
+    
 }
 
 function playRound(computerChoice, humanChoice){
@@ -46,26 +68,6 @@ function playRound(computerChoice, humanChoice){
     }
 }
 
-function playGame(){
-    let humanScore = 0
-    let computerScore = 0
-    
-    
-    let roundNo = 1
-    
-    while(roundNo <= 5){
-        const humanSelection = getHumanChoice()
-        const computerSelection = getComputerChoice()
-        playRound(computerSelection, humanSelection)
-    }
-    let winner = (humanScore > computerScore)? "You" : (humanScore == computerScore)? "No one" : "Computer"
-    console.log("Game over!")
-    console.log(`Your score : ${humanScore}`)
-    console.log(`Computer score : ${computerScore}`)
-    console.log(`Winner : ${winner}`)
-
-}
-
 playGame()
-    
+
 
