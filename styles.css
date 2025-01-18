@@ -40,3 +40,9 @@ div.score {
 span {
     font-size: 80px;
 }
+
+.message-text {
+    font-size: 30px;
+    margin-left: 20px;
+    text-align: center;
+}
