@@ -8,39 +8,15 @@ function getComputerChoice(){
     else return "scissors"
 }
 
-function getHumanChoice(){
-    let validEntry = false
-    while(!validEntry){
-        let choice = prompt("Rock, Paper & Scissors");
-        if(choice.toLowerCase() == "rock" || choice.toLowerCase() == "paper" || choice.toLowerCase() == "scissors"){
-            return  choice
-        }
-        alert("Please enter a valid choice") 
-    }
-}
 
-
-function playGame(){
-    
-    let roundNo = 1
-    
-    while(roundNo <= 5){
-        const humanSelection = getHumanChoice()
-        const computerSelection = getComputerChoice()
-        playRound(computerSelection, humanSelection)
-        roundNo++
-    }
-    let winner = (humanScore > computerScore)? "You" : (humanScore == computerScore)? "No one" : "Computer"
-    console.log("Game over!")
-    console.log(`Your score : ${humanScore}`)
-    console.log(`Computer score : ${computerScore}`)
-    console.log(`Winner : ${winner}`)
-    
-}
-
-function playRound(computerChoice, humanChoice){
+function playRound(humanChoice){
     let humanChoiceLower = humanChoice.toLowerCase()
+    let computerChoice = getComputerChoice();
     let computerChoiceLower = computerChoice.toLowerCase()
+    const message = document.querySelector('.message-text')
+
+    const myScore = document.querySelector('.myScore')
+    const cScore = document.querySelector('.computerScore')
 
     if(humanChoiceLower == "rock"){
         if(computerChoiceLower == "scissors") humanScore++
@@ -55,18 +31,26 @@ function playRound(computerChoice, humanChoice){
         else if(computerChoiceLower == "rock") computerScore++
     }
 
-    if(humanScore > computerScore){
-        console.log("You Win!!")
-        console.log(`${humanChoiceLower} beats ${computerChoiceLower}`)
+    message.textContent = `Computer choice => ${computerChoice}. Your choice => ${humanChoiceLower}`;
+    
+    if(humanScore === 5 || computerScore === 5){
+        let winner = (humanScore > computerScore)? "You" : "Computer"
+        message.textContent = `Game over!! Winner ==> ${winner}`
+        humanScore = 0;
+        computerScore = 0;
     }
-    else if(computerScore > humanScore){
-        console.log("You Lose!!")
-        console.log(`${humanChoiceLower} loses to ${computerChoiceLower}`)
-    }
-    else{
-        console.log("It's a draw")
-    }
+    myScore.textContent = humanScore;
+    cScore.textContent = computerScore;
 }
 
 
+
+
+const rock = document.querySelector('.rock')
+const paper = document.querySelector('.paper')
+const scissors = document.querySelector('.scissors')
+
+rock.addEventListener("click", () => playRound("rock"));
+paper.addEventListener("click",  () => playRound("paper"));
+scissors.addEventListener("click", () => playRound("scissors"));
 
