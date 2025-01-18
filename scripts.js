@@ -68,6 +68,5 @@ function playRound(computerChoice, humanChoice){
     }
 }
 
-playGame()
 
 
